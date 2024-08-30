@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from .forms import RegistrationForm
 
 from users.models import CustomUsers
@@ -15,8 +16,6 @@ def register_user(request):
                 password=form.cleaned_data['password']
             )
             return redirect('index:index_page')
-        else:
-            print(form.errors)
     else:
         form = RegistrationForm()
     
@@ -43,3 +42,10 @@ def login_user(request):
             return render(request, 'login.html', context=context)
 
     return render(request, 'login.html')
+
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, 'Вы успешно вышли из аккаунта.')
+    return redirect('index:index_page')
+    
