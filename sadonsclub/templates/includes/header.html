@@ -1,5 +1,6 @@
    {% load static %}
    <!-- Main Header -->
+   <div class="preloader"><div class="icon"></div></div>
     <header class="main-header">
         <!-- Header Top -->
         <div class="header-top">
@@ -43,12 +44,12 @@
                                     <li><a href="gallery.html">Альбом</a></li>
                                 </ul>
                                 <ul class="navigation pull-right clearfix">
-                                    <li><a href="blog.html">Бронирование</a></li>
+                                    <li><a href="{% url 'bookings:booking' %}">Бронирование</a></li>
                                     <li><a href="contact.html">Связаться с нами</a></li>
                                     {% if user.is_authenticated %}
-									<li class="dropdown"><a href="about-clan.html">{{ user.username }}</a>
+									<li class="dropdown"><a href="{% url 'user:profile' %}">{{ user.username }}</a>
                                         <ul>
-                                            <li><a href="about-clan.html">Профиль</a></li>
+                                            <li><a href="{% url 'user:profile' %}">Профиль</a></li>
                                             <li><a href="about-me.html">Мои бронирования</a></li>
 											<li><a href="players.html">Настройки</a></li>
 											<li><a href="{% url 'user:logout' %}">Выйти</a></li>

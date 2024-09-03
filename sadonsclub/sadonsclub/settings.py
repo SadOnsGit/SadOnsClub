@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'index_page.apps.IndexPageConfig',
     'users.apps.UsersConfig',
+    'bookings.apps.BookingsConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
