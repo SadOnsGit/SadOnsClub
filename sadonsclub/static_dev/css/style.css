@@ -118,6 +118,21 @@ h1,h2,h3,h4,h5,h6 {
 	line-height:1.2em;
 }
 
+.profile-image {
+    width: 200px;      /* Установите ширину кнопки */
+    height: 200px;     /* Установите высоту кнопки */
+    border-radius: 50%;  /* Круглая кнопка */
+    overflow: hidden;   /* Скрыть любые выступающие части */
+    padding: 0;        /* Устранить внутренние отступы */
+    border: none;      /* Устранить рамку */
+    background: none;  /* Устранить фон кнопки, если он есть */
+}
+
+.profile-image img {
+    width: 100%;       /* Изображение заполняет всю кнопку */
+    height: auto;      /* Сохраняем пропорции изображения */
+    display: block;    /* Убираем лишние отступы вокруг изображения */
+}
 textarea{
 	overflow:hidden;	
 }

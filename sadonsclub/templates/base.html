@@ -20,26 +20,25 @@
 </head>
 
 <body>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    
-    {% include 'includes/header.html' %}
-    <section class="page-banner" style="background-image:url(images/background/title-bg.jpg);">
-        <div class="auto-container">
-            <div class="inner-container clearfix">
-                <h1>
-                    {% block name_page %}
-                    {% endblock %}
-                </h1>
-            </div>
+    <div class="preloader">
+        <div class="icon">
+
         </div>
-    </section>
-    <main>
+    </div>
+    {% include 'includes/header.html' %}
+    {% if request.path != '/' %}
+        <section class="page-banner" style="background-image:url({% static 'images/background/2.jpg' %});">
+            <div class="auto-container">
+                <div class="inner-container clearfix">
+                    <h1>
+                        {% block name_page %}
+                        {% endblock %}
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <main>
+    {% endif %}
     {% block content %}
     {% endblock %}
     </main>

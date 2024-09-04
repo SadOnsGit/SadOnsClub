@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-<title>SadOnsClub - Home Page</title>
-{% endblock %}
-{% block name %}
-    Главная страница
+    SadOnsClub
 {% endblock %}
 {% block content %}
 <div class="page-wrapper">
@@ -18,8 +15,8 @@
 
                 <div class="auto-container">
                     <div class="content-box">
-                        <h2>У нас <br> круто</h2>
-                        <div class="btn-box"><a href="#" class="theme-btn btn-style-one"><span class="btn-title">Забронировать</span></a></div>
+                        <h2>Начни <br> игру!</h2>
+                        <div class="btn-box"><a href="{% url 'bookings:booking' %}" class="theme-btn btn-style-one"><span class="btn-title">Забронировать</span></a></div>
                     </div>  
                 </div>
             </div>
@@ -29,8 +26,8 @@
             	<div class="image-layer" style="background-image:url({% static 'images/main-slider/2.jpg' %})"></div>
                 <div class="auto-container">
                     <div class="content-box">
-                        <h2>У нас <br> классно</h2>
-                        <div class="btn-box"><a href="#" class="theme-btn btn-style-one"><span class="btn-title">Забронировать</span></a></div>
+                        <h2>Погрузись в мир игр</h2>
+                        <div class="btn-box"><a href="{% url 'bookings:booking' %}" class="theme-btn btn-style-one"><span class="btn-title">Забронировать</span></a></div>
                     </div>  
                 </div>
             </div>
@@ -40,8 +37,8 @@
             	<div class="image-layer" style="background-image:url({% static 'images/main-slider/3.jpg' %})"></div>
                 <div class="auto-container">
                     <div class="content-box">
-                        <h2>Не думай <br> Бронируй</h2>
-                        <div class="btn-box"><a href="#" class="theme-btn btn-style-one"><span class="btn-title">Забронировать</span></a></div>
+                        <h2>Забери победу!</h2>
+                        <div class="btn-box"><a href="{% url 'bookings:booking' %}" class="theme-btn btn-style-one"><span class="btn-title">Забронировать</span></a></div>
                     </div>  
                 </div>
             </div>
@@ -53,11 +50,10 @@
 	<section class="welcome-section">
 		<div class="auto-container">
 			<!-- Sec Title -->
-			<div class="sec-title centered">
-				<div class="title">Добро пожаловать в лучший компьютерный клуб</div>
-				<h2>SadOns & Club</h2>
-			</div>
-			
+            <div class="sec-title centered">
+                <div class="title">Добро пожаловать в лучший компьютерный клуб</div>
+                <h2>SadOns & Club</h2>
+            </div>
 			<div class="row clearfix">
 				
 				<!--Default Portfolio Item-->
@@ -109,7 +105,7 @@
 			
 			<!-- Lower Box -->
 			<div class="lower-box">
-				<div class="text">Тут какой текст</div>
+				<div class="text">SadOnsClub — идеальное место для отдыха и игр! У нас современные игровые ПК и приставки, уютная атмосфера и широкий выбор кальянов. Проводите время с друзьями, участвуйте в турнирах и наслаждайтесь комфортом. Ждем вас в нашем клубе!</div>
 				<a href="about-clan.html" class="theme-btn btn-style-one"><span class="btn-title">О нас</span></a>
 			</div>
 			
@@ -133,13 +129,13 @@
                 <div class="gallery-item col-lg-4 col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="0ms">
                     <div class="inner-box">
                         <figure class="image-box">
-                            <img src="{% static 'images/gallery/17.jpg' %}" alt="">
+                            <img src="{% static 'images/gallery/4.jpg' %}" alt="">
                             <!--Overlay Box-->
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
                                         <a href="#" class="link"><span class="icon flaticon-unlink"></span></a>
-                                        <a href="{% static 'images/gallery/17.jpg' %}" data-fancybox="gallery-2" data-caption="" class="link"><span class="icon flaticon-add"></span></a>
+                                        <a href="{% static 'images/gallery/4.jpg' %}" data-fancybox="gallery-2" data-caption="" class="link"><span class="icon flaticon-add"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -151,13 +147,13 @@
                 <div class="gallery-item col-lg-4 col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="300ms">
                     <div class="inner-box">
                         <figure class="image-box">
-                            <img src="{% static 'images/gallery/18.jpg' %}" alt="">
+                            <img src="{% static 'images/gallery/5.jpg' %}" alt="">
                             <!--Overlay Box-->
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
                                         <a href="#" class="link"><span class="icon flaticon-unlink"></span></a>
-                                        <a href="{% static 'images/gallery/18.jpg' %}" data-fancybox="gallery-2" data-caption="" class="link"><span class="icon flaticon-add"></span></a>
+                                        <a href="{% static 'images/gallery/5.jpg' %}" data-fancybox="gallery-2" data-caption="" class="link"><span class="icon flaticon-add"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -169,13 +165,13 @@
                 <div class="gallery-item col-lg-4 col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="600ms">
                     <div class="inner-box">
                         <figure class="image-box">
-                            <img src="{% static 'images/gallery/19.jpg' %}" alt="">
+                            <img src="{% static 'images/gallery/6.jpg' %}" alt="">
                             <!--Overlay Box-->
                             <div class="overlay-box">
                                 <div class="overlay-inner">
                                     <div class="content">
                                         <a href="#" class="link"><span class="icon flaticon-unlink"></span></a>
-                                        <a href="{% static 'images/gallery/19.jpg' %}" data-fancybox="gallery-2" data-caption="" class="link"><span class="icon flaticon-add"></span></a>
+                                        <a href="{% static 'images/gallery/6.jpg' %}" data-fancybox="gallery-2" data-caption="" class="link"><span class="icon flaticon-add"></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -261,8 +257,8 @@
 							<a href="blog-single.html"><img src="{% static 'images/resource/news-1.jpg' %}" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<div class="post-date">20 may 2019</div>
-							<h3><a href="blog-single.html">important brands have given us their trust</a></h3>
+							<div class="post-date">1 сентября 2024 года</div>
+							<h3><a href="blog-single.html">Новый турнир по киберспорту!</a></h3>
 						</div>
 					</div>
 				</div>
@@ -274,8 +270,8 @@
 							<a href="blog-single.html"><img src="{% static 'images/resource/news-2.jpg' %}" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<div class="post-date">18 may 2019</div>
-							<h3><a href="blog-single.html">What happened to esports games this weekend</a></h3>
+							<div class="post-date">2 сентября 2024 года</div>
+							<h3><a href="blog-single.html">Открытие новой игровой зоны</a></h3>
 						</div>
 					</div>
 				</div>
@@ -287,8 +283,8 @@
 							<a href="blog-single.html"><img src="{% static 'images/resource/news-3.jpg' %}" alt="" /></a>
 						</div>
 						<div class="lower-content">
-							<div class="post-date">16 may 2019</div>
-							<h3><a href="blog-single.html">Lion king vs wolf smart upcoming matches</a></h3>
+							<div class="post-date">4 сентября 2024 года</div>
+							<h3><a href="blog-single.html">Интенсив по программированию</a></h3>
 						</div>
 					</div>
 				</div>
