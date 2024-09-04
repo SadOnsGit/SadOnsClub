@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block name_page %}
+    Подтверждение
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container text-center mt-5">
+    <h2>Забронировать компьютер № {{ id }}</h2>
+    <form method="POST" action="{% url 'bookings:confirm_booking' id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="bookingDate">Выберите дату бронирования:</label>
+            <input type="date" id="bookingDate" name="booking_date" class="form-control" required min="{{ today }}" value="{{ today }}">
+        </div>
+        <div class="form-group">
+            <label for="startTime">Выберите время начала бронирования:</label>
+            <select id="startTime" name="start_time" class="form-control" required>
+                <option value="">Выберите время</option>
+                {% for time in available_times %}
+                    <option value="{{ time }}">{{ time }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="endTime">Выберите время конца бронирования:</label>
+            <select id="endTime" name="end_time" class="form-control" required>
+                <option value="">Выберите время</option>
+                {% for time in available_times %}
+                    <option value="{{ time }}">{{ time }}</option>
+                {% endfor %}
+            </select>
+        </div>
+            <button type="submit" class="btn btn-success mt-4">Забронировать</button>
+            <a href="{% url 'bookings:booking' %}" class="btn btn-secondary mt-4">Вернуться на страницу бронирования</a>
+        </div>
+    </form>
+{% else %}
+<div class="container">
+    <div class="input-group">
+        <span class="input-group-text">Ваше имя и фамилия</span>
+        <input type="text" aria-label="First name" class="form-control">
+        <input type="text" aria-label="Last name" class="form-control">
+      </div>
+</div>
+{% endif %}
+{% endblock %}

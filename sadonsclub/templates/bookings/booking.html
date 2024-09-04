@@ -6,15 +6,24 @@
     Бронирование
 {% endblock %}
 {% block content %}
-{% for computer in computers %}
+<div class="text-center mt-2">
+    <h3>VIP</h3>
+</div>
 <div class="container mt-5">
     <div class="row">
-        {% if computer.booking %}
-        <a href='#' class="btn btn-secondary mx-2">№ {{ computer.id }} - Занят</a>
-        {% else %}
-        <a href='#' class="btn btn-success mx-2">№ {{ computer.id }} - Свободен</a>
-        {% endif %}
+        {% for computer in computers %}
+            {% if computer.category.category_name == 'VIP' %}
+                {% if computer.is_active %}
+                    {% if computer.booking %}
+                    <a href='#' class="btn btn-secondary mx-2">№ {{ computer.id }} - Занят</a>
+                    {% else %}
+                    <a href='{% url "bookings:computer_booking" computer.id %}' class="btn btn-success mx-2">№ {{ computer.id }} - Свободен</a>
+                    {% endif %}
+                {% else %}
+                <a href='#' class="btn btn-danger mx-2">№ {{ computer.id }} - На ремонте</a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
-{% endfor %}
 {% endblock %}

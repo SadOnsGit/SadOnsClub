@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegistrationForm
 
-from users.models import CustomUsers
+from .models import CustomUsers
+from bookings.models import Bookings
 
 
 def register_user(request):
@@ -54,3 +55,9 @@ def profile(request):
         'user': get_object_or_404(CustomUsers, username=request.user.username)
     }
     return render(request, 'user/profile.html', context)
+
+def my_bookings(request):
+    context = {
+        'bookings': Bookings.objects.filter(username_id=request.user.id)
+    }
+    return render(request, 'user/my_bookings.html', context)

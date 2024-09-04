@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+    Мои бронирования
+{% endblock %}
+{% block name_page %}
+    Мои бронирования
+{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center text-white mb-4">Список Бронирований</h2>
+            <div class="list-group">
+                {% for booking in bookings %}
+                    <div class="list-group-item bg-dark text-white mb-2">
+                        <h5 class="mb-1">Бронирование №{{ booking.id }}</h5>
+                        <p class="mb-1">Забронировано: {{ booking.booking_date }}</p>
+                        <p class="mb-1">На дату: {{ booking.booked_to_date }}</p>
+                        <p class="mb-1">Бронь с: {{ booking.booked_from }}</p>
+                        <p class="mb-1">Бронь до: {{ booking.booked_until }}</p>
+                        <small class="text-muted">Статус: {{ booking.status }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

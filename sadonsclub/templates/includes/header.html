@@ -50,7 +50,7 @@
 									<li class="dropdown"><a href="{% url 'user:profile' %}">{{ user.username }}</a>
                                         <ul>
                                             <li><a href="{% url 'user:profile' %}">Профиль</a></li>
-                                            <li><a href="about-me.html">Мои бронирования</a></li>
+                                            <li><a href="{% url 'user:my_bookings' %}">Мои бронирования</a></li>
 											<li><a href="players.html">Настройки</a></li>
 											<li><a href="{% url 'user:logout' %}">Выйти</a></li>
                                         </ul>
