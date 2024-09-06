@@ -1,0 +1,40 @@
+services:
+  web:
+    build: ./sadonsclub
+    image: sadonsclub:1.0.0
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 127.0.0.1:8000:8000
+    develop:
+      watch:
+        - action: sync
+          path: ./sadonsclub
+          target: /usr/src/sadonsclub
+          ignore:
+          - venv/
+          - .vscode/
+          - .gitignore
+        - action: rebuild
+          path: ./sadonsclub/requirements.txt
+        - action: rebuild
+          path: ./sadonsclub/entrypoint.sh
+    env_file:
+      - ./sadonsclub/.env.dev
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    container_name: database
+    environment:
+      POSTGRES_DB: sadonsclub_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
+  dbbrowser:
+    image: adminer:latest
+    container_name: adminer
+    ports:
+    - 8080:8080
+    depends_on:
+      - db
