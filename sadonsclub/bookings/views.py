@@ -9,7 +9,15 @@ from users.models import CustomUsers
 
 def booking(request):
     context = {
-        'computers': Computers.objects.all()
+        'computers_standart': Computers.objects.filter(
+            category__category_name='Standart'
+        ),
+        'computers_vip': Computers.objects.filter(
+            category__category_name='VIP'
+        ),
+        'computers_premium': Computers.objects.filter(
+            category__category_name='Premium'
+        )
     }
     return render(request, 'bookings/booking.html', context)
 
@@ -34,11 +42,8 @@ def confirm_booking(request, computer_id):
         user = CustomUsers.objects.get(username=request.user.username)
         computer = get_object_or_404(
             Computers,
-            id=computer_id,
-            booking=False
+            id=computer_id
         )
-        computer.booking = True
-        computer.save()
         Bookings.objects.create(
             computer_id=computer,
             username=user,

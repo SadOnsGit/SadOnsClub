@@ -6,22 +6,47 @@
     Бронирование
 {% endblock %}
 {% block content %}
+<!-- Standart -->
+<div class="text-center mt-2">
+    <h3>Standart</h3>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        {% for computer in computers_standart %}
+            {% if computer.is_active %}
+                <a href='{% url "bookings:computer_booking" computer.id %}' class="btn btn-success mx-2">Компьютер № {{ computer.id }}</a>
+            {% else %}
+                <a href='#' class="btn btn-danger mx-2">№ {{ computer.id }} - На ремонте</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<!-- VIP -->
 <div class="text-center mt-2">
     <h3>VIP</h3>
 </div>
 <div class="container mt-5">
     <div class="row">
-        {% for computer in computers %}
-            {% if computer.category.category_name == 'VIP' %}
-                {% if computer.is_active %}
-                    {% if computer.booking %}
-                    <a href='#' class="btn btn-secondary mx-2">№ {{ computer.id }} - Занят</a>
-                    {% else %}
-                    <a href='{% url "bookings:computer_booking" computer.id %}' class="btn btn-success mx-2">№ {{ computer.id }} - Свободен</a>
-                    {% endif %}
-                {% else %}
+        {% for computer in computers_vip %}
+            {% if computer.is_active %}
+                <a href='{% url "bookings:computer_booking" computer.id %}' class="btn btn-success mx-2">Компьютер № {{ computer.id }}</a>
+            {% else %}
                 <a href='#' class="btn btn-danger mx-2">№ {{ computer.id }} - На ремонте</a>
-                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<!-- Premium -->
+<div class="text-center mt-2">
+    <h3>Premium</h3>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        {% for computer in computers_premium %}
+            {% if computer.is_active %}
+                <a href='{% url "bookings:computer_booking" computer.id %}' class="btn btn-success mx-2">Компьютер № {{ computer.id }}</a>
+            {% else %}
+                <a href='#' class="btn btn-danger mx-2">№ {{ computer.id }} - На ремонте</a>
             {% endif %}
         {% endfor %}
     </div>
