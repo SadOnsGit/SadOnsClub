@@ -15,7 +15,10 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+if environ.get('ALLOWED_HOST'):
+    ALLOWED_HOSTS = environ.get('ALLOWED_HOST').split()
+else:
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -118,9 +121,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static_dev',
-    ]
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / 'static',
+        ]
+else:
+    STATIC_ROOT = 'static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
