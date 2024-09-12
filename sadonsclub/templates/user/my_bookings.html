@@ -6,7 +6,7 @@
     Мои бронирования
 {% endblock %}
 {% block content %}
-<div class="container my-5">
+<div class="container my-5 text-center">
     <div class="row">
         <div class="col-12">
             <h2 class="text-center text-white mb-4">Список Бронирований</h2>
@@ -18,7 +18,10 @@
                         <p class="mb-1">На дату: {{ booking.booked_to_date }}</p>
                         <p class="mb-1">Бронь с: {{ booking.booked_from }}</p>
                         <p class="mb-1">Бронь до: {{ booking.booked_until }}</p>
-                        <small class="text-muted">Статус: {{ booking.status }}</small>
+                        <p class="mb-1">Статус: {% if booking.status %}Активно {% else %}Отменено {% endif %}</p>
+                        {% if booking.status %}
+                        <a href="#" class="btn btn-outline-danger mt-2">Отменить бронирование</a>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

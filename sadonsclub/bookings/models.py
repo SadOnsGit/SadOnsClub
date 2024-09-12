@@ -13,6 +13,7 @@ class Category(models.Model):
         max_digits=10,
         decimal_places=2
     )
+
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'Категории'
@@ -69,3 +70,14 @@ class Bookings(models.Model):
     booked_to_date = models.DateField(
         verbose_name='Дата предстоящего бронирования'
     )
+    status = models.BooleanField(
+        default=True,
+        verbose_name='Статус'
+    )
+
+    class Meta:
+        verbose_name  = 'бронирование'
+        verbose_name_plural = 'Бронирования'
+    
+    def __str__(self):
+        return f'{self.pk}'

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from .forms import RegistrationForm
 
@@ -27,14 +27,11 @@ def login_user(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-
-        # Найти пользователя по электронной почте
         try:
-            user = CustomUsers.objects.get(email=email)  # Получаем пользователя по email
+            user = CustomUsers.objects.get(email=email)
         except CustomUsers.DoesNotExist:
-            user = None  # Если пользователя нет, устанавливаем None
+            user = None
 
-        # Аутентификация пользователя
         if user is not None and user.check_password(password):
             login(request, user)
             return redirect('index:index_page')
@@ -61,3 +58,6 @@ def my_bookings(request):
         'bookings': Bookings.objects.filter(username_id=request.user.id)
     }
     return render(request, 'user/my_bookings.html', context)
+
+def user_settings(request):
+    return render(request, 'user/user_settings.html')

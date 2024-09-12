@@ -44,7 +44,7 @@
                                         <ul>
                                             <li><a href="{% url 'user:profile' %}">Профиль</a></li>
                                             <li><a href="{% url 'user:my_bookings' %}">Мои бронирования</a></li>
-											<li><a href="players.html">Настройки</a></li>
+											<li><a href="{% url "user:settings" %}">Настройки</a></li>
 											<li><a href="{% url 'user:logout' %}">Выйти</a></li>
                                         </ul>
                                     </li>

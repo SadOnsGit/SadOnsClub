@@ -21,18 +21,31 @@ def booking(request):
     }
     return render(request, 'bookings/booking.html', context)
 
+
 def computer_booking(request, computer_id):
     date_now = timezone.now().date().isoformat()
-    available_times = [time(hour=x) for x in range(24)]
+    bookings_computer = Bookings.objects.filter(
+        computer_id=computer_id,
+        status=True
+    ).values(
+        'booked_from',
+        'booked_until'
+    )
+    busy_hours = []
+    for booking in bookings_computer:
+        busy_hours.append(booking['booked_from'].hour)
+        busy_hours.append(booking['booked_until'].hour)
+    available_times = [time(hour=x) for x in range(24) if x not in busy_hours]
     return render(
         request,
         'bookings/computer_booking.html',
         context={
             'id': computer_id,
             'today': date_now,
-            'available_times': available_times
+            'available_times': available_times,
         }
     )
+
 
 def confirm_booking(request, computer_id):
     if request.method == 'POST':
