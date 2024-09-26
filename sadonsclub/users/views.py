@@ -14,23 +14,7 @@ class RegisterCreateView(CreateView):
     form_class = RegistrationForm
     template_name = 'register.html'
     success_url = reverse_lazy('index:index_page')
-    
 
-def register_user(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            CustomUsers.objects.create_user(
-                username=form.cleaned_data['username'],
-                email=form.cleaned_data['email'],
-                password=form.cleaned_data['password']
-            )
-            return redirect('index:index_page')
-    else:
-        form = RegistrationForm()
-
-    return render(request, 'register.html', {'form': form})
-        
 
 def login_user(request):
     if request.method == 'POST':
