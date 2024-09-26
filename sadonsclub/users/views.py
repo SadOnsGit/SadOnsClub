@@ -1,11 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
-from django.contrib import messages
-from .forms import RegistrationForm
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
 
+from .forms import RegistrationForm
 from .models import CustomUsers
 from bookings.models import Bookings
 
+
+class RegisterCreateView(CreateView):
+    """Представление регистрации пользователя"""
+    model = CustomUsers
+    form_class = RegistrationForm
+    template_name = 'register.html'
+    success_url = reverse_lazy('index:index_page')
+    
 
 def register_user(request):
     if request.method == 'POST':

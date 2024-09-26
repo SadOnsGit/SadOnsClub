@@ -10,32 +10,26 @@
 <section class="text-center">
     <main class="form-signin w-100 m-auto">
         <form method="POST" action="{% url 'user:register' %}">
-            <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
             {% csrf_token %}
+            <h1 class="h3 mb-3 fw-normal">Регистрация</h1>
             {% for field in form %}
-                {% for error in field.errors %}
-                    <div class="alert alert-danger">{{ error }}</div>
-                {% endfor %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    <input type="{{ field.field.widget.input_type }}" 
+                           name="{{ field.name }}" 
+                           id="{{ field.id_for_label }}" 
+                           class="form-control" 
+                           value="{{ field.value|default_if_none:'' }}">
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger mt-1">{{ error }}</div>
+                    {% endfor %}
+                    <small class="form-text text-muted">{{ field.help_text }}</small>
+                </div>
             {% endfor %}
-            <div class="form-floating">
-                <input type="text" name="username" class="form-control" id="floatingUsername" placeholder="SadOns" required>
-                <label for="floatingUsername">Ваш псевдоним (Никнейм)</label>
-            </div>
-            <div class="form-floating">
-                <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
-                <label for="floatingEmail">Email адрес</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
-                <label for="floatingPassword">Пароль</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" name="repeat_password" class="form-control" id="floatingRepeatPassword" placeholder="Repeat password" required>
-                <label for="floatingRepeatPassword">Повторите пароль</label>
-            </div>
             <button class="btn btn-primary w-100 py-2" type="submit">Регистрация</button>
         </form>
-      <a href="{% url 'user:login' %}" class="btn btn-secondary w-100 py-2 mt-3">Вход в аккаунт</a>
+        <a href="{% url 'user:login' %}" class="btn btn-secondary w-100 py-2 mt-3">Вход в аккаунт</a>
     </main>
-  </section>
+</section>
+
 {% endblock %}

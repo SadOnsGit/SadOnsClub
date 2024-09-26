@@ -1,9 +1,14 @@
 from os import environ
+from dotenv import load_dotenv
+import logging
 
 from pathlib import Path
 
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -15,8 +20,17 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get('DEBUG')
 
-if environ.get('ALLOWED_HOST'):
-    ALLOWED_HOSTS = environ.get('ALLOWED_HOST').split()
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost',
+    'http://127.0.0.1',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:8001',
+]
+
+if environ.get('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = environ.get('ALLOWED_HOSTS').split()
 else:
     ALLOWED_HOSTS = ['*']
 

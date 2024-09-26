@@ -3,5 +3,5 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUsers(AbstractUser):
-    bonuses = models.IntegerField(default=0)
-    money = models.FloatField(default=0)
+    bonuses = models.IntegerField('Бонусы', default=0)
+    money = models.FloatField('Деньги', default=0)

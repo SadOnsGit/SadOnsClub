@@ -2,7 +2,14 @@ from django import forms
 
 from users.models import CustomUsers
 
+
 class RegistrationForm(forms.ModelForm):
+    username = forms.CharField(
+        max_length=20,
+        label='Никнейм',
+        help_text='Введите никнейм без спец.знаков и не более 20 символов'
+    )
+    email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     repeat_password = forms.CharField(widget=forms.PasswordInput)
 
@@ -13,6 +20,8 @@ class RegistrationForm(forms.ModelForm):
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
+        if not username.isalnum():
+            raise forms.ValidationError("Введенный вами Username содержит запрещённые знаки.")
         if CustomUsers.objects.filter(username__iexact=username).exists():
             raise forms.ValidationError("Введенный вами Username уже занят.")
         return username
