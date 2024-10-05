@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
+from django.views.generic import ListView
 from datetime import time
 
 from .models import Computers, Bookings
 
 from users.models import CustomUsers
+
 
 
 def booking(request):

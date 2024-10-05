@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Вход в аккаунт
+{% endblock %}
+{% block name_page %}
+    Вход в аккаунт
+{% endblock %}
+{% block content %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>
+            У вашего аккаунта нет доступа к этой странице.
+            Чтобы продолжить, войдите в систему с аккаунтом,
+            у которого есть доступ.
+            </p>
+        {% else %}
+            <p>
+                Пожалуйста, войдите в систему,
+                чтобы просматривать эту страницу.
+            </p>
+        {% endif %}
+    {% endif %}
+            <section class="text-center">
+            <main class="form-signin w-100 m-auto">
+                <form method="POST" action="{% url 'login' %}">
+                <input type="hidden" name="next" value="{{ next }}">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal">Аутентификация</h1>
+                {% if error %}
+                <p class="text-danger">{{ error }}</p>
+                {% endif %}
+                <div class="form-floating">
+                    <input type="username" name="username" class="form-control" id="floatingInput" placeholder="SadOns">
+                    <label for="floatingInput">Ваш никнейм</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Пароль</label>
+                </div>
+                <button class="btn btn-primary w-100 py-2" type="submit">Войти</button>
+                </form>
+                <a href="{% url 'password_reset' %}" class="btn btn-secondary w-100 py-2 mt-3">Забыли пароль?</a>
+                <a href="{% url 'user:register' %}" class="btn btn-secondary w-100 py-2 mt-3">Регистрация</a>
+            </main>
+            </section>
+{% endblock %} 

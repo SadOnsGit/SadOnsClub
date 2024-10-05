@@ -37,7 +37,7 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    'index_page.apps.IndexPageConfig',
+    'club.apps.ClubConfig',
     'users.apps.UsersConfig',
     'bookings.apps.BookingsConfig',
 
@@ -50,6 +50,8 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'users.CustomUsers'
+LOGIN_REDIRECT_URL = 'club:index'
+LOGIN_URL = 'login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,17 +89,31 @@ WSGI_APPLICATION = 'sadonsclub.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': environ.get('POSTGRES_DB'),
+            'USER': environ.get('POSTGRES_USER'),
+            'PASSWORD': environ.get('POSTGRES_PASSWORD'),
+            'HOST': 'db',
+            'PORT': environ.get('POSTGRES_PORT'),
+        }
+    }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': environ.get('POSTGRES_DB'),
-        'USER': environ.get('POSTGRES_USER'),
-        'PASSWORD': environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'db',
-        'PORT': environ.get('POSTGRES_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
