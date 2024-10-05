@@ -17,7 +17,6 @@ class RegistrationForm(forms.ModelForm):
         model = CustomUsers
         fields = ['username', 'email', 'password', 'repeat_password']
         
-
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not username.isalnum():
@@ -31,7 +30,6 @@ class RegistrationForm(forms.ModelForm):
         if CustomUsers.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError("Введенный вами Email уже используется.")
         return email
-
 
     def clean(self):
         cleaned_data = super().clean()

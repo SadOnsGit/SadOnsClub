@@ -13,31 +13,12 @@ class RegisterCreateView(CreateView):
     model = CustomUsers
     form_class = RegistrationForm
     template_name = 'register.html'
-    success_url = reverse_lazy('index:index_page')
-
-
-def login_user(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        try:
-            user = CustomUsers.objects.get(email=email)
-        except CustomUsers.DoesNotExist:
-            user = None
-
-        if user is not None and user.check_password(password):
-            login(request, user)
-            return redirect('index:index_page')
-        else:
-            context = {'error': 'Неправильный адрес электронной почты или пароль.'}
-            return render(request, 'login.html', context)
-
-    return render(request, 'login.html')
+    success_url = reverse_lazy('club:index')
 
 
 def logout_user(request):
     logout(request)
-    return redirect('index:index_page')
+    return redirect('club:index')
     
 
 def profile(request):
